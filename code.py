@@ -21,4 +21,10 @@ def russian(a,b):
 		x = x >> 1 	   # Divide x by 2
 	return z
 
+def rec_russian(a, b):
+	if a == 0: 	   # we are at the end of the line
+		return 0
+	if a % 2 == 0: # a is even divide by 2
+		return 2 * rec_russian( a/2, b)
+	return b + 2 * rec_russian((a-1)/2, b)
 	
