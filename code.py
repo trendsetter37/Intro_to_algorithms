@@ -5,8 +5,8 @@ def naive(a, b):
 	z = 0
 
 	while x > 0:
-		x += y
-		z -= 1
+		x -= 1
+		z += y
 		print(z)
 	return z
 
