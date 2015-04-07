@@ -36,7 +36,7 @@ def find_eulerian_tour(graph):
 	tour.append(current_vertex)
 
 	while len(graph) > 0:
-		print(graph, current_vertex)
+		
 		for edge in graph:
 			if current_vertex in edge:
 				if edge[0] == current_vertex:
