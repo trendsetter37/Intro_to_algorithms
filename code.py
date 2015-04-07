@@ -54,7 +54,7 @@ def find_eulerian_tour(graph): # Doesn't work right when submitted
 from collections import defaultdict
 from random import choice
 def find_eulerian_tour2(graph):
-	''' Credit: http://forums.udacity.com/questions/100157003/discussion-of-possible-solution-algorithms-ps1-10#cs215#answer-container-100157510
+	''' Credit: http://forums.udacity.com/questions/100157003/discussion-of-possible-solution-algorithms-ps1-10#cs215#answer-container-100157510 '''
     # nodes: dictionary of edges to travel in the form {node: list of nodes connected to that node}
     nodes = defaultdict(list)
     for k,l in graph:
