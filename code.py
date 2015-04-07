@@ -27,4 +27,28 @@ def rec_russian(a, b):
 	if a % 2 == 0: # a is even divide by 2
 		return 2 * rec_russian( a/2, b)
 	return b + 2 * rec_russian((a-1)/2, b)
+
+def find_eulerian_tour(graph):
+	''' can be found at http://stackoverflow.com/questions/12447880/finding-a-eulerian-tour#answer-12458027 '''
+	tour = [] # building up result here
+
+	current_vertex = graph[0][0]
+	tour.append(current_vertex)
+
+	while len(graph) > 0:
+		print(graph, current_vertex)
+		for edge in graph:
+			if current_vertex in edge:
+				if edge[0] == current_vertex:
+					current_vertex = edge[1]
+				else:
+					current_vertex = edge[0]
+				graph.remove(edge)
+				tour.append(current_vertex)
+				break
+		else:
+			# Edit to account for case no tour is possible
+			return False
+	return tour
+
 	
