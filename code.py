@@ -28,7 +28,7 @@ def rec_russian(a, b):
 		return 2 * rec_russian( a/2, b)
 	return b + 2 * rec_russian((a-1)/2, b)
 
-def find_eulerian_tour(graph):
+def find_eulerian_tour(graph): # Doesn't work right when submitted
 	''' can be found at http://stackoverflow.com/questions/12447880/finding-a-eulerian-tour#answer-12458027 '''
 	tour = [] # building up result here
 
@@ -51,4 +51,37 @@ def find_eulerian_tour(graph):
 			return False
 	return tour
 
-	
+from collections import defaultdict
+from random import choice
+def find_eulerian_tour2(graph):
+    # nodes: dictionary of edges to travel in the form {node: list of nodes connected to that node}
+    nodes = defaultdict(list)
+    for k,l in graph:
+        nodes[k].append(l)
+        nodes[l].append(k)
+
+    # pick a random node to begin the path
+    node = choice(nodes.keys())
+    path = [node]
+
+    # traverse the graph. remove used edges as you go
+    while len(nodes[node]) > 0 :
+        after = nodes[node].pop()
+        nodes[after].remove(node)      
+        path.append(after)
+        node = after
+
+    # find nodes in our path that still have unused edges
+    for node, node_list in nodes.iteritems():
+        if node in path and len(node_list)>0:
+
+            # insert "detour" into our path. as before, remove edges as you go
+            index = path.index(node)
+            while len(nodes[node]) > 0 :
+                after = nodes[node].pop()
+                nodes[after].remove(node)
+                index+=1
+                path.insert(index,after)
+                node = after
+
+    return path	
